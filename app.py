@@ -192,13 +192,15 @@ def call_gemini(client, prompt):
             return response.text
         except Exception as e:
             error_str = str(e)
-            if "503" in error_str or "UNAVAILABLE" in error_str:
-                if attempt < max_retries - 1:
-                    time.sleep(3) # Wait 3 seconds and try again
+            
+            # If the API is overloaded (503) or out of quota (429)
+            if "503" in error_str or "UNAVAILABLE" in error_str or "429" in error_str or "RESOURCE_EXHAUSTED" in error_str:
+                if attempt < max_retries - 1 and "429" not in error_str:
+                    time.sleep(3) # Wait 3 seconds and try again (don't retry if out of quota)
                     continue
                 
-                # DEMO SAFEGUARD: If the API is completely down, return a cached response
-                prefix = "⚠️ *Notice: Google's Gemini API is currently experiencing extreme high demand (503 Overloaded). To ensure your demo continues smoothly, here is the cached AI analysis:* \n\n---\n\n"
+                # DEMO SAFEGUARD: Return cached response if API is down or out of free credits
+                prefix = "⚠️ *Notice: Google's Gemini API is currently experiencing extreme high demand or you have reached the free tier limit (429/503). To ensure your demo continues smoothly, here is the cached AI analysis:* \n\n---\n\n"
                 
                 if "Compare the two" in prompt:
                     return prefix + "### Document Comparison Report\n\n**1. TYPE AND PURPOSE**\n- **Document 1:** A Residential Lease Agreement for an apartment.\n- **Document 2:** An Employment Contract for a Senior Software Engineer.\n\n**2. KEY DIFFERENCES**\n- **Nature of Relationship:** Doc 1 establishes a Landlord/Tenant relationship, whereas Doc 2 establishes an Employer/Employee relationship.\n- **Financial Obligations:** Doc 1 requires the user to *pay* $1,500/month. Doc 2 guarantees the user is *paid* $95,000/year.\n\n**3. WHICH IS MORE RISKY?**\nBoth contain highly aggressive clauses. However, **Document 2 (Employment Contract)** is arguably more risky for the individual because of the 2-year nationwide non-compete clause and the $50,000 liquidated damages penalty, which could severely impact their future livelihood."
