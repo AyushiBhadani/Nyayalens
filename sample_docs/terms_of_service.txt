@@ -1,0 +1,38 @@
+TERMS OF SERVICE AGREEMENT
+
+Last Updated: January 1, 2024
+
+Welcome to CloudVault Pro ("Service"). By using our Service, you agree to be bound by the following Terms of Service. Please read them carefully.
+
+1. ACCEPTANCE OF TERMS
+By accessing or using CloudVault Pro, you agree to be bound by these Terms. We reserve the right to modify these Terms at any time without notice. Continued use of the Service constitutes acceptance of the new Terms.
+
+2. DESCRIPTION OF SERVICE
+CloudVault Pro provides cloud-based data storage and management services. Features and availability may change at any time without notice.
+
+3. USER DATA
+3.1 You grant CloudVault Pro a worldwide, royalty-free, perpetual, irrevocable license to use, copy, store, modify, and distribute any content you upload to the Service for any purpose, including commercial purposes.
+3.2 We may share your data with third-party partners for marketing and analytics purposes.
+3.3 We are not responsible for data loss of any kind. Users are advised to maintain their own backups.
+
+4. PAYMENT AND BILLING
+4.1 Subscription fees are billed monthly and are non-refundable under any circumstances.
+4.2 Subscriptions auto-renew automatically. You must cancel at least 30 days before the renewal date to avoid being charged.
+4.3 We reserve the right to change pricing at any time with 7 days' notice.
+
+5. ACCOUNT TERMINATION
+We reserve the right to suspend or terminate your account at any time, without notice, for any reason. Upon termination, all your data may be permanently deleted within 24 hours.
+
+6. LIMITATION OF LIABILITY
+CloudVault Pro's total liability to you for any claim shall not exceed $10. This applies regardless of the nature of the claim, including but not limited to data loss, service outages, or security breaches.
+
+7. INDEMNIFICATION
+You agree to indemnify and hold harmless CloudVault Pro, its affiliates, and employees from any claims, damages, or expenses arising from your use of the Service.
+
+8. DISPUTE RESOLUTION
+All disputes must be resolved through binding arbitration in San Francisco, California. You waive all rights to class-action lawsuits and jury trials.
+
+9. GOVERNING LAW
+These Terms shall be governed by the laws of the State of California.
+
+By using CloudVault Pro, you acknowledge that you have read and understood these Terms.

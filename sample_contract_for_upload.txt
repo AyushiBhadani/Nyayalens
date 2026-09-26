@@ -1,0 +1,36 @@
+FREELANCE SERVICES AGREEMENT
+
+This Agreement is entered into on this 1st day of November 2024, by and between:
+CLIENT: Acme Innovations Ltd., 100 Tech Park Way, San Jose, CA
+CONTRACTOR: Alex Smith (Freelancer), 404 Creative Lane, Austin, TX
+
+1. SCOPE OF WORK
+Contractor agrees to provide software development and design services to the Client, specifically the creation of a mobile application named "AcmeConnect" (the "Project"). Contractor will deliver the final code and design assets by December 15, 2024.
+
+2. COMPENSATION
+Client shall pay Contractor a total fixed fee of $15,000 for the Project.
+- 50% ($7,500) is due upon signing this Agreement.
+- 50% ($7,500) is due within 30 days of final delivery and acceptance of the Project.
+Late payments by the Client will incur a 5% monthly interest charge.
+
+3. REVISIONS AND SCOPE CREEP
+The fixed fee includes up to two (2) rounds of minor revisions. Any additional features, structural changes, or revisions beyond the second round will be billed at an hourly rate of $120/hour.
+
+4. INTELLECTUAL PROPERTY
+Upon final payment, Contractor transfers and assigns to Client all rights, title, and interest in the final mobile application. However, Contractor retains the right to use screenshots and non-proprietary code snippets in their personal portfolio for marketing purposes.
+
+5. CONFIDENTIALITY
+Contractor agrees to keep all proprietary information, business plans, and trade secrets of the Client strictly confidential during and after the term of this Agreement. A breach of this clause will result in an immediate demand for $50,000 in liquidated damages.
+
+6. INDEPENDENT CONTRACTOR STATUS
+Contractor is an independent contractor. Nothing in this Agreement shall be construed to create an employer-employee relationship, partnership, or joint venture. Contractor is solely responsible for their own taxes and insurance.
+
+7. TERMINATION
+Either party may terminate this Agreement with 14 days' written notice. If Client terminates the Agreement without cause before completion, Client must pay for all work completed up to the date of termination, plus a $2,000 cancellation fee.
+
+8. GOVERNING LAW
+This Agreement shall be governed by the laws of the State of California.
+
+SIGNATURES:
+Client: ___________________________   Date: ________
+Contractor: _______________________   Date: ________
