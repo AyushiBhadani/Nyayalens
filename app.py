@@ -185,6 +185,18 @@ def load_sample(filename):
 import time
 
 def call_gemini(client, prompt):
+    if not client:
+        # FULL DEMO MODE: No API key provided, just return the mock response instantly
+        prefix = "✨ *Demo Mode: No API key provided. Showing a cached sample response:* \n\n---\n\n"
+        if "Compare the two" in prompt:
+            return prefix + "### Document Comparison Report\n\n**1. TYPE AND PURPOSE**\n- **Document 1:** A Residential Lease Agreement for an apartment.\n- **Document 2:** An Employment Contract for a Senior Software Engineer.\n\n**2. KEY DIFFERENCES**\n- **Nature of Relationship:** Doc 1 establishes a Landlord/Tenant relationship, whereas Doc 2 establishes an Employer/Employee relationship.\n- **Financial Obligations:** Doc 1 requires the user to *pay* $1,500/month. Doc 2 guarantees the user is *paid* $95,000/year.\n\n**3. WHICH IS MORE RISKY?**\nBoth contain highly aggressive clauses. However, **Document 2 (Employment Contract)** is arguably more risky for the individual because of the 2-year nationwide non-compete clause and the $50,000 liquidated damages penalty, which could severely impact their future livelihood."
+        elif "HIGH-RISK" in prompt:
+            return prefix + "### 🚨 Risk Analysis Report\n\n🚩 **[UNBOUNDED NON-COMPETE]** — The agreement bans you from working for *any* competitor in the entire United States for 2 full years. This is extremely broad and could prevent you from finding new work.\n\n🚩 **[EXCESSIVE PENALTY]** — Violating the non-compete results in an automatic $50,000 penalty, regardless of actual damages caused to the company.\n\n🚩 **[OVERREACHING IP OWNERSHIP]** — The contract claims ownership of *any* work you create, even on your personal time using your personal equipment. Your weekend hobby projects would legally belong to the company."
+        elif "answer this question" in prompt:
+            return prefix + "**Answer:** Yes, according to Section 6 (ENTRY BY LANDLORD), the landlord reserves the right to enter your apartment at *any time* without giving you prior notice for inspections or repairs. This is highly unusual and compromises your privacy."
+        else:
+            return prefix + "### 📋 Document Summary\n\n- **Parties:** Greenfield Properties LLC (Landlord) and John Doe (Tenant).\n- **Term:** 12 months, starting Feb 1, 2024.\n- **Rent:** $1,500/month, due on the 1st. $150 late fee if paid after the 5th.\n- **Obligations:** Tenant pays all utilities and is responsible for *all* repairs up to $500, even for normal wear and tear.\n- **Red Flag:** Landlord can enter at any time without notice, and early termination costs 3 months' rent."
+
     max_retries = 3
     for attempt in range(max_retries):
         try:
@@ -321,9 +333,6 @@ def show_main_app():
     </div>
     """, unsafe_allow_html=True)
 
-    if not api_key:
-        st.warning("🔑 Please enter your Gemini API Key in the sidebar to unlock document analysis.")
-
     client = genai.Client(api_key=api_key) if api_key else None
 
     tab1, tab2, tab3, tab4 = st.tabs([
@@ -348,7 +357,7 @@ def show_main_app():
 
             col1, col2 = st.columns(2)
             with col1:
-                if st.button("📋 Generate Plain-English Summary", use_container_width=True, disabled=not api_key):
+                if st.button("📋 Generate Plain-English Summary", use_container_width=True):
                     with st.spinner("Generating summary..."):
                         try:
                             prompt = (
@@ -363,7 +372,7 @@ def show_main_app():
                             st.error(f"Error: {e}")
 
             with col2:
-                if st.button("🔍 Scan for Risks & Red Flags", use_container_width=True, disabled=not api_key):
+                if st.button("🔍 Scan for Risks & Red Flags", use_container_width=True):
                     with st.spinner("Scanning for risks..."):
                         try:
                             prompt = (
@@ -396,7 +405,7 @@ def show_main_app():
                 with st.chat_message(msg["role"]):
                     st.markdown(msg["content"])
 
-            if prompt := st.chat_input("Ask anything about this document...", disabled=not api_key):
+            if prompt := st.chat_input("Ask anything about this document..."):
                 st.session_state.chat_messages.append({"role": "user", "content": prompt})
                 with st.chat_message("user"):
                     st.markdown(prompt)
@@ -432,7 +441,7 @@ def show_main_app():
             doc2 = st.file_uploader("Upload revised", type=["txt","pdf"], key="doc2")
 
         if doc1 and doc2:
-            if st.button("⚖️ Compare Now", use_container_width=True, disabled=not api_key):
+            if st.button("⚖️ Compare Now", use_container_width=True):
                 with st.spinner("Comparing documents..."):
                     try:
                         t1 = read_file(doc1)
@@ -507,7 +516,7 @@ def show_main_app():
         with st.expander("📄 View the Lease Agreement used in this demo", expanded=False):
             st.text_area("", lease_doc, height=160, disabled=True, key="demo_lease_view")
 
-        if st.button("▶ Run Step 1 — Summarize the Lease Agreement", use_container_width=True, key="demo_s1", disabled=not api_key):
+        if st.button("▶ Run Step 1 — Summarize the Lease Agreement", use_container_width=True, key="demo_s1"):
             with st.spinner("Gemini is reading the lease agreement..."):
                 try:
                     prompt = (
@@ -546,7 +555,7 @@ def show_main_app():
         with st.expander("📄 View the Employment Contract used in this demo", expanded=False):
             st.text_area("", employ_doc, height=160, disabled=True, key="demo_employ_view")
 
-        if st.button("▶ Run Step 2 — Scan Employment Contract for Risks", use_container_width=True, key="demo_s2", disabled=not api_key):
+        if st.button("▶ Run Step 2 — Scan Employment Contract for Risks", use_container_width=True, key="demo_s2"):
             with st.spinner("Gemini is scanning for red flags..."):
                 try:
                     prompt = (
@@ -603,7 +612,7 @@ def show_main_app():
             key="demo_q_text"
         )
 
-        if st.button("▶ Run Step 3 — Get Answer", use_container_width=True, key="demo_s3", disabled=not api_key) and demo_q:
+        if st.button("▶ Run Step 3 — Get Answer", use_container_width=True, key="demo_s3") and demo_q:
             with st.spinner("Gemini is finding the answer..."):
                 try:
                     prompt = (
@@ -659,7 +668,7 @@ def show_main_app():
 
         st.markdown("<br>", unsafe_allow_html=True)
 
-        if st.button("▶ Run Step 4 — Compare Both Documents", use_container_width=True, key="demo_s4", disabled=not api_key):
+        if st.button("▶ Run Step 4 — Compare Both Documents", use_container_width=True, key="demo_s4"):
             with st.spinner("Gemini is comparing the documents..."):
                 try:
                     prompt = (
